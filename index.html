@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Pro - Modern QR Code Generator</title>
+    <meta name="description" content="Generate custom, high-quality QR codes for URLs, text, Wi-Fi, and more with professional styling.">
+    <meta name="keywords" content="QR code generator, custom QR, professional QR, brand QR">
+    
+    <meta property="og:title" content="QR Pro - Modern QR Code Generator">
+    <meta property="og:description" content="Professional QR codes with custom colors, logos, and frames.">
+    
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #f472b6; /* Pastel Pink */
+            --secondary-color: #334155;
+            --accent-color: #60a5fa; /* Pastel Blue */
+            --tertiary-color: #a78bfa; /* Pastel Purple */
+            --background-color: #f5f3ff; /* Very light purple/blue background */
+            --surface-color: #ffffff;
+            --border-radius: 1.25rem;
+        }
+    }
+
+    @layer base {
+        body {
+            @apply bg-[var(--background-color)] text-[var(--secondary-color)] font-sans antialiased;
+        }
+    }
+
+    @layer components {
+        .floating-element {
+            @apply absolute pointer-events-none opacity-20 text-2xl animate-bounce;
+        }
+        .btn {
+            @apply px-6 py-2.5 rounded-[var(--border-radius)] font-medium transition-all duration-200 flex items-center justify-center gap-2;
+        }
+        .btn-primary {
+            @apply bg-gradient-to-r from-[var(--primary-color)] via-[var(--tertiary-color)] to-[var(--accent-color)] text-white hover:opacity-90 shadow-lg shadow-purple-200 active:scale-95 border-none;
+        }
+        .btn-outline {
+            @apply border-2 border-purple-100 text-purple-600 hover:bg-purple-50 active:scale-95;
+        }
+        .card {
+            @apply bg-[var(--surface-color)] rounded-[var(--border-radius)] shadow-xl shadow-gray-200/50 border border-gray-100;
+        }
+        .input-field {
+            @apply w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--primary-color)] focus:ring-2 focus:ring-blue-100 outline-none transition-all;
+        }
+        .tab-item {
+            @apply px-4 py-2 cursor-pointer border-b-2 transition-all font-medium whitespace-nowrap;
+        }
+        .tab-item.active {
+            @apply border-[var(--primary-color)] text-[var(--primary-color)];
+        }
+        .tab-item.inactive {
+            @apply border-transparent text-gray-500 hover:text-gray-700;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel" src="components/WelcomeScreen.js"></script>
+    <script type="text/babel" src="components/ClosingScreen.js"></script>
+    <script type="text/babel" src="components/Header.js"></script>
+    <script type="text/babel" src="components/QRDisplay.js"></script>
+    <script type="text/babel" src="components/ConfigPanel.js"></script>
+    <script type="text/babel" src="utils/qrHelper.js"></script>
+    <script type="text/babel" src="app.js"></script>
+</body>
+</html>
