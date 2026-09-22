@@ -15,27 +15,37 @@ function QRDisplay({ qrImage, config, loading }) {
         <div className="icon-sparkles text-purple-400"></div>
       </div>
       
-      <div className="relative group w-full aspect-square max-w-[320px] mb-8 bg-gray-50 rounded-2xl flex items-center justify-center border-4 border-gray-100 p-4 transition-transform hover:scale-[1.02]">
-        {loading ? (
-          <div className="flex flex-col items-center gap-3">
-            <div className="icon-loader text-4xl text-[var(--accent-color)] animate-spin"></div>
-            <span className="text-sm text-gray-400">Generating...</span>
+      <div className="relative group w-full max-w-[340px] mb-8 transition-transform hover:scale-[1.02]">
+        <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 blur-md opacity-70"></div>
+
+        <div className="relative rounded-[2rem] border-[10px] border-white bg-white p-5 shadow-[0_25px_60px_rgba(168,85,247,0.18)]">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white text-[10px] font-bold tracking-[0.18em] uppercase px-4 py-2 rounded-full shadow-lg">
+            Scan Me
           </div>
-        ) : qrImage ? (
-          <div className="relative w-full h-full">
-            <img 
-              src={qrImage} 
-              alt="Generated QR Code" 
-              className="w-full h-full object-contain rounded-lg shadow-sm relative z-10"
-            />
-            <div className="icon-heart text-pink-200 absolute -bottom-2 -right-2 text-2xl z-20"></div>
+
+          <div className="relative aspect-square w-full rounded-[1.4rem] bg-gray-50 flex items-center justify-center border-4 border-gray-100 p-4 overflow-hidden">
+            {loading ? (
+              <div className="flex flex-col items-center gap-3">
+                <div className="icon-loader text-4xl text-[var(--accent-color)] animate-spin"></div>
+                <span className="text-sm text-gray-400">Generating...</span>
+              </div>
+            ) : qrImage ? (
+              <div className="relative w-full h-full">
+                <img 
+                  src={qrImage} 
+                  alt="Generated QR Code" 
+                  className="w-full h-full object-contain rounded-xl shadow-sm relative z-10"
+                />
+                <div className="icon-heart text-pink-200 absolute -bottom-2 -right-2 text-2xl z-20"></div>
+              </div>
+            ) : (
+              <div className="text-gray-300 flex flex-col items-center">
+                <div className="icon-qr-code text-6xl mb-2"></div>
+                <p className="text-sm">Menunggu input...</p>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="text-gray-300 flex flex-col items-center">
-            <div className="icon-qr-code text-6xl mb-2"></div>
-            <p className="text-sm">Menunggu input...</p>
-          </div>
-        )}
+        </div>
       </div>
 
       <div className="w-full space-y-3">
