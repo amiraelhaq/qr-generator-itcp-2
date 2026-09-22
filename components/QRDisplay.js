@@ -48,7 +48,7 @@ function QRDisplay({ qrImage, config, loading }) {
         </div>
       </div>
 
-      <div className="w-full space-y-3">
+      <div className="w-full">
         <button 
           onClick={downloadQR}
           disabled={!qrImage}
@@ -57,16 +57,6 @@ function QRDisplay({ qrImage, config, loading }) {
           <div className="icon-download text-xl"></div>
           Unduh PNG
         </button>
-        <div className="flex gap-3">
-          <button className="btn btn-outline flex-1 py-3 text-sm">
-            <div className="icon-share text-lg"></div>
-            Bagikan
-          </button>
-          <button className="btn btn-outline flex-1 py-3 text-sm">
-            <div className="icon-printer text-lg"></div>
-            Cetak
-          </button>
-        </div>
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-4 w-full border-t pt-8">
