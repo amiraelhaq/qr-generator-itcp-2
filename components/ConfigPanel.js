@@ -82,40 +82,89 @@ function ConfigPanel({ config, onChange }) {
       )}
 
       {activeTab === 'design' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fadeIn">
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">Warna QR</label>
-            <div className="flex items-center gap-3">
-              <input 
-                type="color" 
-                value={config.color} 
-                onChange={(e) => onChange({ color: e.target.value })}
-                className="w-12 h-12 rounded cursor-pointer border-0"
-              />
-              <input 
-                type="text" 
-                value={config.color} 
-                onChange={(e) => onChange({ color: e.target.value })}
-                className="input-field text-sm font-mono uppercase"
-              />
+        <div className="space-y-6 animate-fadeIn">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-semibold mb-2 text-gray-700">Warna QR</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  value={config.color} 
+                  onChange={(e) => onChange({ color: e.target.value })}
+                  className="w-12 h-12 rounded cursor-pointer border-0"
+                />
+                <input 
+                  type="text" 
+                  value={config.color} 
+                  onChange={(e) => onChange({ color: e.target.value })}
+                  className="input-field text-sm font-mono uppercase"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-2 text-gray-700">Warna Latar</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  value={config.bgColor} 
+                  onChange={(e) => onChange({ bgColor: e.target.value })}
+                  className="w-12 h-12 rounded cursor-pointer border-0"
+                />
+                <input 
+                  type="text" 
+                  value={config.bgColor} 
+                  onChange={(e) => onChange({ bgColor: e.target.value })}
+                  className="input-field text-sm font-mono uppercase"
+                />
+              </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">Warna Latar</label>
-            <div className="flex items-center gap-3">
-              <input 
-                type="color" 
-                value={config.bgColor} 
-                onChange={(e) => onChange({ bgColor: e.target.value })}
-                className="w-12 h-12 rounded cursor-pointer border-0"
-              />
-              <input 
-                type="text" 
-                value={config.bgColor} 
-                onChange={(e) => onChange({ bgColor: e.target.value })}
-                className="input-field text-sm font-mono uppercase"
-              />
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-sm font-semibold text-gray-700">Pilih Palet Warna</label>
+              <button
+                type="button"
+                onClick={() => onChange({ color: '#111827', bgColor: '#ffffff' })}
+                className="text-xs font-medium text-purple-600 hover:text-purple-700 underline"
+              >
+                Reset warna
+              </button>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {[
+                { name: 'Classic', color: '#111827', bgColor: '#ffffff' },
+                { name: 'Pink', color: '#ec4899', bgColor: '#fdf2f8' },
+                { name: 'Rose', color: '#f43f5e', bgColor: '#fff1f2' },
+                { name: 'Blue', color: '#2563eb', bgColor: '#eff6ff' },
+                { name: 'Sky', color: '#0ea5e9', bgColor: '#f0f9ff' },
+                { name: 'Green', color: '#16a34a', bgColor: '#ecfdf5' },
+                { name: 'Emerald', color: '#059669', bgColor: '#ecfdf5' },
+                { name: 'Purple', color: '#7c3aed', bgColor: '#f5f3ff' },
+                { name: 'Violet', color: '#8b5cf6', bgColor: '#f5f3ff' },
+                { name: 'Orange', color: '#f97316', bgColor: '#fff7ed' },
+                { name: 'Amber', color: '#d97706', bgColor: '#fffbeb' },
+                { name: 'Black', color: '#111111', bgColor: '#f3f4f6' }
+              ].map((palette) => (
+                <button
+                  key={palette.name}
+                  type="button"
+                  onClick={() => onChange({ color: palette.color, bgColor: palette.bgColor })}
+                  className={`flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-medium transition hover:scale-[1.02] ${
+                    config.color === palette.color && config.bgColor === palette.bgColor
+                      ? 'border-purple-400 bg-purple-50 text-purple-700'
+                      : 'border-gray-200 bg-white text-gray-600'
+                  }`}
+                >
+                  <span
+                    className="inline-block w-5 h-5 rounded-full border border-white shadow-sm"
+                    style={{ background: `linear-gradient(135deg, ${palette.color}, ${palette.bgColor})` }}
+                  ></span>
+                  {palette.name}
+                </button>
+              ))}
             </div>
           </div>
 
